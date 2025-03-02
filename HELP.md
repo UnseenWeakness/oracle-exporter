@@ -18,3 +18,13 @@ A Spring Boot project to monitor Oracle 11g database metrics using Micrometer an
 2. **Build the Project**
    ```bash
    mvn clean package
+   
+3. **get info**
+   curl http://localhost:9226/actuator/prometheus
+
+4. **update prometheus.yml** 
+scrape_configs:
+   - job_name: 'oracle-exporter'
+     metrics_path: '/actuator/prometheus' # 指定metrics_path
+     static_configs:
+      - targets: ['localhost:9226']
