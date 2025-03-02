@@ -1,0 +1,22 @@
+# 服务端口配置
+server:
+  port: 9226  # 自定义端口，避免与默认 8080 冲突
+
+# 数据源配置
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE  # 替换为你的 Oracle 11g 连接信息
+    username: system                            # 替换为你的用户名
+    password: 123456                     # 替换为你的密码
+    driver-class-name: oracle.jdbc.OracleDriver
+
+# Actuator 和 Prometheus 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus  # 暴露健康、指标和 Prometheus 端点
+  metrics:
+    export:
+      prometheus:
+        enabled: true                       # 启用 Prometheus 指标导出
